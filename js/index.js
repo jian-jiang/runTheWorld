@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	var myDataRef = new Firebase('https://run-the-world.firebaseio.com/');
+	var ref = new Firebase('https://run-the-world.firebaseio.com/');
 	$('.create #messageInput').keypress(function(e){
 		if(e.keyCode===13){
 			var name=$('.create #nameInput').val();
