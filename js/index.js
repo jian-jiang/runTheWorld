@@ -1,19 +1,35 @@
 $(document).ready(function(){
-	var myDataRef = new Firebase('https://rjuta02bfmx.firebaseio-demo.com/');
-	$('#messageInput').keypress(function(e){
+	var myDataRef = new Firebase('https://run-the-world.firebaseio.com/');
+	$('.create #messageInput').keypress(function(e){
 		if(e.keyCode===13){
-			var name=$('#nameInput').val();
-			var text=$('#messageInput').val();
-			myDataRef.push({name: name, text: text});
-			$('#messageInput').val('');
+			var name=$('.create #nameInput').val();
+			var password=$('.create #messageInput').val();
+			ref.createUser({
+				email:name,
+				password:password
+			},function(error){
+				if(error===null){
+					console.log("User created successfully");
+				}else{
+					console.log("Error creating user:",error);
+				}
+			});
+		}
+	$('.log #messageInput').keypress(function(e){
+		if(e.keyCode===13){
+			var name=$('.log #nameInput').val();
+			var password=$('.log #messageInput').val();
+			ref.authWithPassword({
+				email:name,
+				password:password
+			},function(error,authData){
+				if(error){
+					console.log("Login Failed!",error);
+				}else{
+					console.log("Login success",authData);
+				}
+			});
 		}
 	});
-	myDataRef.on('child_added', function(snapshot) {
-        var message = snapshot.val();
-		displayChatMessage(message.name, message.text);
-      });
-      function displayChatMessage(name, text) {
-        $('<div/>').text(text).prepend($('<em/>').text(name+': ')).appendTo($('#messagesDiv'));
-        $('#messagesDiv')[0].scrollTop = $('#messagesDiv')[0].scrollHeight;
-      };
+	});
 });
