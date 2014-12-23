@@ -1,6 +1,6 @@
 $(document).ready(function(){
 	var myDataRef = new Firebase('https://rjuta02bfmx.firebaseio-demo.com/');
-	$('#messageInput').keypress(function(){
+	$('#messageInput').keypress(function(e){
 		if(e.keyCode===13){
 			var name=$('#nameInput').val();
 			var text=$('#messageInput').val();
