@@ -1,4 +1,4 @@
-$(document).ready(
+$(document).ready(function(){
 	var myDataRef = new Firebase('https://rjuta02bfmx.firebaseio-demo.com/');
 	$('#messageInput').keypress(function(){
 		if(e.keyCode===13){
@@ -8,4 +8,4 @@ $(document).ready(
 			$('#messageInput').val('');
 		}
 	});
-);
+});
